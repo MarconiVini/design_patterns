@@ -45,6 +45,18 @@ class UserBuilder
     self
   end
 
+  def with_credit_card_data(number, credit, log)
+    self.credit_card.number = number
+    self.credit_card.credit = credit
+    self.credit_card.log = log
+    self
+  end
+
+  def with_credit_card(credit_card)
+    self.credit_card = credit_card
+    self
+  end
+
   def build
     self.user.credit_card = self.credit_card
     self.user

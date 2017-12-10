@@ -69,5 +69,28 @@ describe UserBuilder do
         expect(user.credit_card.credit).to eq credit_card_credit
       end
     end
+
+    describe '#with_credit_card_data' do
+      it 'sets credit card information' do
+        user = builder.with_credit_card_data(credit_card_number, credit_card_credit, credit_card_log).build
+        expect(user.credit_card.number).to eq credit_card_number
+        expect(user.credit_card.credit).to eq credit_card_credit
+        expect(user.credit_card.log).to eq credit_card_log
+      end
+    end
+
+    describe '#with_credit_card' do
+      it 'sets credit card object' do
+        credit_card = CreditCard.new
+        credit_card.number = credit_card_number
+        credit_card.credit = credit_card_credit
+        credit_card.log = credit_card_log
+
+        user = builder.with_credit_card(credit_card).build
+        expect(user.credit_card.number).to eq credit_card_number
+        expect(user.credit_card.credit).to eq credit_card_credit
+        expect(user.credit_card.log).to eq credit_card_log
+      end
+    end
   end
 end
